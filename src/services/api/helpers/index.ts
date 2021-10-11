@@ -1,0 +1,1 @@
+export { isErrorStatus } from './isErrorStatus';

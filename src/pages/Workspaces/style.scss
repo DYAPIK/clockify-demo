@@ -1,0 +1,11 @@
+.workspaces-page {
+  display: flex;
+
+  &__load-clients-button {
+    margin: 10px 0;
+  }
+
+  &__clients-list {
+    margin-left: 20px;
+  }
+}
