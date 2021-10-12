@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 
 import { block } from 'bem-cn';
 
-import { Button, Preloader } from 'shared/view';
+import { Button, Preloader } from 'shared/view/elements';
 
 import { useFeatureModel } from '../../context';
 

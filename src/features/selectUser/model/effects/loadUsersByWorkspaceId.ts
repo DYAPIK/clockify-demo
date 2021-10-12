@@ -1,10 +1,10 @@
 import { createEffect } from 'effector';
 import { Services } from 'services/types';
 
-function createLoadClientsEffect(services: Services) {
+function createLoadUsersByWorkspaceIdEffect(services: Services) {
   const effect = createEffect(async (workspaceID: string) => {
-    const clients = await services.api.client.loadClients(workspaceID);
-    return clients;
+    const users = await services.api.user.loadUsersByWorkspaceId(workspaceID);
+    return users;
   });
 
   effect.fail.watch(({ params, error }) => {
@@ -14,4 +14,4 @@ function createLoadClientsEffect(services: Services) {
   return effect;
 }
 
-export { createLoadClientsEffect };
+export { createLoadUsersByWorkspaceIdEffect };

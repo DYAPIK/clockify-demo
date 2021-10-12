@@ -26,14 +26,17 @@ function SelectWorkspace() {
     loadWorkspacesFx();
   }, [loadWorkspacesFx]);
 
-  const handleSelectWorkspaceId = useCallback((option: Option<string>) => {
-    selectWorkspaceId(option.value);
+  const handleSelectWorkspaceId = useCallback((options: Option<string>[]) => {
+    if (options.length) {
+      const [option] = options; 
+      selectWorkspaceId(option.value);
+    }
   }, [selectWorkspaceId]);
 
   return (
     <div className={b()}>
       <Select<string>
-        value={selectedWorkspacedId ?? undefined}
+        value={selectedWorkspacedId ? [selectedWorkspacedId] : []}
         options={workspaces.map(({ name, id }) => ({ label: name, value: id }))}
         onChange={handleSelectWorkspaceId}
         placeholder="Выберите workspace"

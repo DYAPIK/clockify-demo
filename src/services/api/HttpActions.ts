@@ -4,17 +4,18 @@ import { getEnvParams } from 'core/getEnvParams';
 
 import { defaultAxiosConfig } from './defaultAxiosConfig';
 
-interface IHttpActionParams<T> {
+interface IHttpActionParams {
   url: string;
   options?: AxiosRequestConfig;
-  data?: T;
+  data?: any;
   domainType?: DomainType;
 }
 
-type DomainType = 'baseApi';
+type DomainType = 'baseApi' | 'reportsApi';
 
 class HttpActions {
   private baseURL = getEnvParams().baseAPI!;
+  private reportsApiURL = getEnvParams().reportsAPI!;
 
   constructor() {
 
@@ -23,26 +24,26 @@ class HttpActions {
     }
   }
 
-  public get<T>(params: IHttpActionParams<T>): AxiosPromise<T> {
+  public get<T>(params: IHttpActionParams): AxiosPromise<T> {
     const { url, options, data, domainType = 'baseApi' } = params;
     const axiosInstance = this.getAxiosInstance(domainType);
     return axiosInstance.get(url, { ...options, params: data });
   }
 
 
-  public post<T>(params: IHttpActionParams<T>): AxiosPromise<T> {
+  public post<T>(params: IHttpActionParams): AxiosPromise<T> {
     const { url, data, options, domainType = 'baseApi' } = params;
     const axiosInstance = this.getAxiosInstance(domainType);
     return axiosInstance.post(url, data, options)
   }
 
-  public del<T>(params: IHttpActionParams<T>): AxiosPromise<T> {
+  public del<T>(params: IHttpActionParams): AxiosPromise<T> {
     const { url, data, options, domainType = 'baseApi' } = params;
     const axiosInstance = this.getAxiosInstance(domainType);
     return axiosInstance.delete(url, { ...options, data });
   }
 
-  public put<T>(params: IHttpActionParams<T>): AxiosPromise<T> {
+  public put<T>(params: IHttpActionParams): AxiosPromise<T> {
     const { url, data, options, domainType = 'baseApi' } = params;
     const axiosInstance = this.getAxiosInstance(domainType);
     return axiosInstance.put(url, data, options);
@@ -58,6 +59,7 @@ class HttpActions {
   private getBaseUrl(domain: DomainType) {
     const urls: Record<DomainType, string> = {
       baseApi: this.baseURL,
+      reportsApi: this.reportsApiURL,
     };
     const url = urls[domain];
     return url;

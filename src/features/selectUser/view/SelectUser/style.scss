@@ -1,0 +1,18 @@
+.select-user {
+  min-width: 200px;
+  max-width: 300px;
+
+  &__select {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__label {
+    margin-bottom: 10px;
+    color: #777777
+  }
+
+  &__preloader {
+    margin-left: 10px;
+  }
+}

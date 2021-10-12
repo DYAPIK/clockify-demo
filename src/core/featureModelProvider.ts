@@ -2,10 +2,14 @@ import { useContext, createContext } from 'react';
 
 import { WorkspaceModel } from 'features/workspaces/model';
 import { ClientsModel } from 'features/clients/model';
+import { SelectUserModel } from 'features/selectUser/model';
+import { GetReportsModel } from 'features/getReports/model';
 
 export type FeaturesModels = {
   readonly workspace: WorkspaceModel;
   readonly clients: ClientsModel;
+  readonly selectUser: SelectUserModel;
+  readonly getReports: GetReportsModel;
 };
 
 const featuresContext = createContext<FeaturesModels | null>(null);
